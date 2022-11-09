@@ -13,16 +13,26 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      key: message.key,
       crossAxisAlignment: message.opponentType == OpponentType.sender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         if (message.replyTo != null)
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(8),
+          InkWell(
+            onTap: () {
+              Scrollable.ensureVisible(
+                message.replyTo?.key?.currentContext ?? context,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(message.replyTo!.text!),
             ),
-            child: Text(message.replyTo!.text!),
           ),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 8),

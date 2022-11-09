@@ -11,7 +11,7 @@ abstract class IMessage {
   String? text;
   String? url;
   IMessage? replyTo;
-  ValueKey? get key;
+  GlobalKey? get key;
 
   IMessage copyWith({
     UniqueKey? id,
@@ -52,7 +52,7 @@ class Message implements IMessage {
   IMessage? replyTo;
 
   @override
-  ValueKey? get key => ValueKey(id);
+  GlobalKey? get key => GlobalKey();
 
   @override
   copyWith({
