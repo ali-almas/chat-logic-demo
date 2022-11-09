@@ -42,6 +42,7 @@ class ChatViewModel extends ChangeNotifier {
   StreamSubscription<IMessage>? _inputMessageSubscription;
 
   List<IMessage> get messages => _messages;
+  IMessage? get pendingReplyToMessage => _pendingReplyToMessage;
 
   listenInputMessages() {
     _inputMessageSubscription = inputController.inputMessageStream.listen((message) {

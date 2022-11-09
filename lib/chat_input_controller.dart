@@ -2,7 +2,7 @@ import 'package:chat_logic/message.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ChatInputController extends ChangeNotifier {
+class ChatInputController {
   final _textEditingController = TextEditingController();
   final _inputMessageController = BehaviorSubject<IMessage>();
 

@@ -1,4 +1,5 @@
 import 'package:chat_logic/chat_input.dart';
+import 'package:chat_logic/chat_pending_message.dart';
 import 'package:chat_logic/chat_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,11 @@ class ChatPage extends StatelessWidget {
                   final message = viewModel.messages[viewModel.messages.length - index - 1];
                   return Dismissible(
                     key: message.id,
+                    direction: DismissDirection.startToEnd,
+                    movementDuration: Duration.zero,
+                    dismissThresholds: const {
+                      DismissDirection.startToEnd: 0.2,
+                    },
                     confirmDismiss: (_) {
                       viewModel.replyTo(message);
                       return Future.value(false);
@@ -36,6 +42,7 @@ class ChatPage extends StatelessWidget {
                 },
               ),
             ),
+            const ChatPendingMessage(),
             ChatInput(controller: viewModel.inputController),
           ],
         ),

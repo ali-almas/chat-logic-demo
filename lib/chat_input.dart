@@ -10,19 +10,23 @@ class ChatInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: TextField(
-              controller: controller?.textEditingController,
-              decoration: const InputDecoration(
-                hintText: 'Enter a message',
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: controller?.textEditingController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter a message',
+                  ),
+                ),
               ),
-            ),
-          ),
-          IconButton(
-            onPressed: controller?.sendMessage,
-            icon: const Icon(Icons.send),
+              IconButton(
+                onPressed: controller?.sendMessage,
+                icon: const Icon(Icons.send),
+              ),
+            ],
           ),
         ],
       ),
